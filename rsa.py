@@ -3,10 +3,10 @@ while True:
     w = int(input("\nEncrypt: 0 \nDecrypt: 1\n"))
 
     if w == 0:  #encrypts
-        z = int(input("\nUnicode string (utf-8): 0 \nInteger: 1\n"))
+        z = int(input("\nASCII string (utf-8): 0 \nInteger: 1\n"))
         if z == 0:
             user = input("Enter string: \n")
-            s = user.encode('utf-8')
+            s = user.encode('utf-8').strip()
             plaintext = int.from_bytes(s, byteorder='little')
         if z == 1:
             plaintext = int(input(("\nEnter integer: \n")))
@@ -26,8 +26,6 @@ while True:
         b = (prime_1 -1)*(prime_2 - 1)
         c = 0
         q = 0
-        output_1 = a     #saves a and b for the final print message
-        output_2 = b
         n_1 = []
 
         while b != 0:   #calculates GCD
@@ -60,7 +58,7 @@ while True:
         print("Decryption key:", decrypt)
         plaintext = pow(cyphertext, decrypt, modulus)
         print("Plaintext:", plaintext)
-        z = int(input("Convert to Unicode: 0\n"))
+        z = int(input("Convert to ASCII string: 0\n"))
         if z == 0:
             n = plaintext.bit_length()
             m = plaintext.to_bytes(n, byteorder='little')
