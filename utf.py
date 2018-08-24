@@ -1,0 +1,10 @@
+user = input()
+s = user.encode('utf-8')
+print("in bytes:", s)
+k = int.from_bytes(s, byteorder='little')
+print("This is your integer:",k)
+
+n = k.bit_length()
+m = k.to_bytes(n, byteorder='little')
+p = m.decode("utf-8")
+print("and your message:", p)
