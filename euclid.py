@@ -24,7 +24,7 @@ while True:
     x_1=1
     y_1=n[1]
     x_2=0
-    y_2=0
+
     while i < len(n):
         y = n[i]
         x_2 = (-1)*y_1
