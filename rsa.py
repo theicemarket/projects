@@ -71,16 +71,16 @@ def keygen():
             prime_1 = pseu_primes[0]
             prime_2 = pseu_primes[1]
             print("Prime 1:", prime_1, "\n\nPrime 2:", prime_2)
-            z = int(input("If values are prime, return 1. \nOtherwise return 0.\n "))
+            z = int(input("If values are prime, return 1. \nOtherwise return 0.\n "))+1
 
         encrypt = 65537
-        if gcd(encrypt, (prime_1 -1)*(prime_2 - 1))[4] != 1:
-            print("WHAT")
+        if gcd(encrypt, (prime_1 -1)*(prime_2 - 1))[4] != 1:    #checks that gcd(e,totient(modulus)) = 1
+            print("WHAT??")
+
         decrypt = linear_solution(encrypt,(prime_1 -1)*(prime_2 - 1), 1)[0]
         print("\nEncryption key: ", encrypt)
         print("\nDecryption key: ", decrypt, "\n")
-
-
+        print("Modulus: ", prime_1*prime_2, "\n")
 
     if z == 1:
         encrypt = int(input("\nEnter an encyption key: "))
@@ -91,12 +91,15 @@ def keygen():
 #encryption
 def encryption():
     z = int(input("\nASCII string (utf-8): 0 \nInteger: 1\n"))
+
     if z == 0:
         user = input("\nEnter string: \n")
         s = user.encode('utf-8').strip()
         plaintext = int.from_bytes(s, byteorder='little')
+
     if z == 1:
         plaintext = int(input(("\nEnter integer: \n")))
+
     modulus = int(input("\nEnter a modulus: "))
     encrypt = int(input("\nEnter an encyption key: "))
     cyphertext = pow(plaintext, encrypt, modulus)
