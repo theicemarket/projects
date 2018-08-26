@@ -23,7 +23,7 @@ def linear_solution(a,b):
     for i in range(2, len(coef_lists[2])):
         y = coef_lists[2][i]
         x_2 = -y_1
-        y_2 = -x_1-y*(y_1)
+        y_2 = -x_1-y*y_1
         x_1 = x_2
         y_1 = y_2
     return(x_1,-y_1)
