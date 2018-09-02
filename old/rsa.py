@@ -18,7 +18,7 @@ def gcd(a,b):
         a = c
     return(a_list, b_list, quotent_list, remainder_list,c)    #gcd = c= gcd(a,b)[4]
 
-#finds x,y s.t. ax+by=gcd(a,b)
+#finds x,y s.t. ax+by=gcd(a,b), and c == 1 forces positive x solution
 def linear_solution(a,b,c):
     coef_lists = gcd(a,b)
     for i in coef_lists[:-1]:   #removes int c from list
@@ -29,7 +29,7 @@ def linear_solution(a,b,c):
     y_1=coef_lists[2][1] # = gcd(a,b)[4] = actual gcd(a,b)
 
     #recursion on a-by = r
-    #into c*x-d*y = gcd(a,b) where d = r
+    #into c*x-d*y = gcd(a,b) where d = r and c = b
     #using quotent list calculted from gcd function
     for i in range(2, len(coef_lists[2])):
         y = coef_lists[2][i]
@@ -37,10 +37,10 @@ def linear_solution(a,b,c):
         y_2 = -x_1-y*y_1
         x_1 = x_2
         y_1 = y_2
-    #solution is (x,y) = (x_1, -y_1)
+    #linear solution is (x_1, -y_1)
 
     if c == 1:
-        #forces x_1 to be a positive solution to a(x_1)+(b)(y*)=gcd(a,b)
+        #forces x_1 to be a positive solution
         k = 0
         while x_1 < 0:
             k = k + 1
@@ -60,13 +60,12 @@ def prime_gen():
             i = i+1
     return(pseu_primes)
 
-#keygen
 def keygen():
     z = int(input("Generate all keys: 0\nFind decryption key and modulus given (e,p,q): 1\n"))
 
     if z == 0:
         while z == 0:
-            print("Generaring pseudoprimes, please wait: ")
+            print("Generaring pseudoprimes, please wait:")
             pseu_primes = prime_gen()
             prime_1 = pseu_primes[0]
             prime_2 = pseu_primes[1]
@@ -78,17 +77,17 @@ def keygen():
             print("WHAT??")
 
         decrypt = linear_solution(encrypt,(prime_1 -1)*(prime_2 - 1), 1)[0]
-        print("\nEncryption key: ", encrypt)
-        print("\nDecryption key: ", decrypt, "\n")
-        print("Modulus: ", prime_1*prime_2, "\n")
+        print("\nEncryption key:", encrypt)
+        print("\nDecryption key:", decrypt, "\n")
+        print("Modulus:", prime_1*prime_2, "\n")
 
     if z == 1:
         encrypt = int(input("\nEnter an encyption key: "))
         prime_1 = int(input("\nEnter first private key: \n"))
         prime_2 = int(input("\nEnter second private key: \n"))
         decrypt = linear_solution(encrypt,(prime_1 -1)*(prime_2 - 1), 1)[0]
+        print("Decryption key:", decrypt)
 
-#encryption
 def encryption():
     z = int(input("\nASCII string (utf-8): 0 \nInteger: 1\n"))
 
@@ -105,7 +104,6 @@ def encryption():
     cyphertext = pow(plaintext, encrypt, modulus)
     print("\nEncrypted message:", cyphertext)
 
-#decryption
 def decryption():
     cyphertext = int(input("\nEnter cyphetext: \n"))
     modulus = int(input("Enter modulus: \n"))
@@ -123,7 +121,6 @@ def decryption():
         p = m.decode("utf-8")
         print(p)
 
-#main select
 def main():
     print("\n//RSA encryption, decryption, and keygen//")
     w = int(input("Encrypt: 0 \nDecrypt: 1\nKeygen:  2\n\n"))

@@ -7,8 +7,8 @@ i = 0
 pseu_primes = []
 while i != 2:
     a = random.randint(x,y)
-    b = 1361
-    if pow(b,a-1,a) == 1:
+    b = 2
+        if pow(b,a-1,a) == 1:
         pseu_primes.append(a)
         print(a)
         i = i+1
