@@ -1,10 +1,10 @@
 def ST1(n):
   y = 0
-  i = 0
+  i = 0                             #index to count up to n
   while i < n+1:
-      x = (1+2*y*y)**0.5
+      x = (1+8*y*y)**0.5            #y is even
       if x.is_integer() == True:
-          N = int((y/2)**2)
+          N = int(y**2)
           if y != 0:
             print(N)
           i = i + 1
@@ -14,7 +14,7 @@ def ST2(n):
     x_n = 1
     y_n = 0
     for i in range(1,n+1):
-        m = x_n
+        m = x_n                     #placeholder for x_n
         x_n = 3*x_n+4*y_n
         y_n = 2*m+3*y_n
         N = int((y_n/2)**2)
@@ -22,7 +22,7 @@ def ST2(n):
             print(N)
 
 def ST3(n):
-    for i in range(1,n+1):
+    for i in range(1,n+1):          #uses eulers formula for nth number
         a = 3 + 2*(2**0.5)
         b = 3 - 2*(2**0.5)
         c = 4*(2**0.5)
