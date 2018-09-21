@@ -20,16 +20,8 @@ while True:
 
 #calculates linear solution
     n = n_1[::-1]   #reverses list
-    i = 2
-    x_1=1
-    y_1=n[1]
-    x_2=0
-
-    while i < len(n):
-        y = n[i]
-        x_2 = (-1)*y_1
-        y_2 = (x_1+y*(y_1))*(-1)
-        x_1 = x_2
-        y_1 = y_2
-        i = i + 1
-    print(output_1, "(", x_2, ")+", output_2, "(", -y_2, ")=", a, "\n", sep='')
+    x=1
+    y=n[1]
+    for i in range(2,len(n)):
+        x,y = -y, -x-n[i]*y
+    print(output_1, "(", x, ")+", output_2, "(", -y, ")=", a, "\n", sep='')

@@ -1,0 +1,6 @@
+def gcd(a,b):
+  r = a % b
+    while r > 0:
+    print a, b, r
+    a, b, r = b, r, b%r
+    return b
